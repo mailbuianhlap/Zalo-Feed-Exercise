@@ -8,11 +8,7 @@
 import Foundation
 
 struct PhotoNetworkService {
-    private let client: APIClient
-    
-    init(client: APIClient = .shared) {
-        self.client = client
-    }
+    private let client: APIClient = .shared
     
     func fetchPhotos(ModelPage: ModelPage ,completion: @escaping (Result<[ZAPhoto], APIError>) -> Void) {
         client.request(method: .get, endpoint: .listPhotos(page: ModelPage.currentPage, perPage: ModelPage.perPage), objectType: [ZAPhoto].self, completion: completion)
